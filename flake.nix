@@ -6,7 +6,7 @@
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-23.11";
     home-manager = {
-      url = "github:nix-communties/home-manager/release-23.11";
+      url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -19,7 +19,7 @@
     in {
       homeConfigurations = {
         afredojala = home-manager.lib.homeManagerConfiguration {
-          inherit nixpkgs;
+          inherit pkgs;
           modules = [ ./home.nix];
       };
     };
