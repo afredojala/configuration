@@ -5,6 +5,25 @@
       hello
       cowsay
       lolcat
+      age
+      bat
+      btop
+      duf
+      eza
+      fastfetch
+      fd
+      glow
+      jq
+      just
+      lazygit
+      ncdu
+      ripgrep
+      sops
+      tldr
+      tree
+      yazi
+      zellij
+      zoxide
     ];
 
 
