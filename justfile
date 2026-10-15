@@ -5,7 +5,7 @@ build target="afredojala":
 update target="afredojala":
     home-manager switch -b "hm-backup-$(date +%Y%m%d-%H%M%S)" --flake '.#{{target}}'
 
-# macOS only: build the system layer (Homebrew, Chrome, and 1Password).
+# macOS only: build the system layer (Homebrew and 1Password).
 mac-system-build:
     nix build --out-link result-system '.#darwinConfigurations.macbook.system'
 

@@ -1,7 +1,7 @@
 # Workstation configuration
 
 Shared Home Manager configuration for EndeavourOS and an Apple Silicon MacBook.
-A separate nix-darwin configuration installs Homebrew, Chrome, and 1Password.
+A separate nix-darwin configuration installs Homebrew and 1Password. Safari is provided by macOS.
 
 | Target | Platform | Home directory |
 | --- | --- | --- |
@@ -18,7 +18,7 @@ A separate nix-darwin configuration installs Homebrew, Chrome, and 1Password.
 | Access | Git identity, GitHub CLI and HTTPS credential helper, SSH host entries |
 | Cloud | kubectl, Helm, K9s settings/aliases, Google Cloud CLI and GKE auth plugin |
 | Utilities | See `home.packages` in `home.nix`, including `rg`, `bat`, and `rsync` |
-| Mac apps | Chrome and 1Password through nix-darwin/Homebrew |
+| Mac apps | 1Password through nix-darwin/Homebrew; Safari provided by macOS |
 
 `modules/` contains shared configuration, `hosts/` contains host-specific settings,
 and `dotfiles/` contains editor and terminal configuration. `flake.lock` pins Nix
@@ -73,7 +73,7 @@ Review any existing-app conflicts before replacing manually installed apps.
 
 ## Accounts and credentials
 
-Sign in to Chrome and 1Password, then authenticate the command-line tools:
+Sign in to 1Password, then authenticate the command-line tools:
 
 ```sh
 gh auth login --hostname github.com --git-protocol https

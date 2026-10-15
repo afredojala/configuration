@@ -15,7 +15,7 @@
   };
   homebrew = {
     enable = true;
-    casks = [ "1password" "google-chrome" ];
+    casks = [ "1password" ];
     onActivation = {
       cleanup = "none";
       autoUpdate = false;
