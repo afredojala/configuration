@@ -1,0 +1,40 @@
+theme = "zed_onedark"
+
+[editor]
+line-number = "relative"
+mouse = true
+bufferline = "multiple"
+auto-format = true
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.file-picker]
+hidden = false
+parents = false
+
+
+[editor.lsp]
+display-messages = true
+display-inlay-hints = true
+
+[keys.normal]
+X = "extend_line_above"
+C-x = ":buffer-close"
+S-h = ":buffer-previous"
+S-l = ":buffer-next"
+S-left = ":buffer-previous"
+S-right = ":buffer-next"
+
+
+
+[editor.statusline]
+left = ["mode", "spinner"]
+center = ["file-name"]
+right = ["diagnostics", "selections", "position", "file-encoding", "file-line-ending", "file-type"]
+separator = "│"
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"

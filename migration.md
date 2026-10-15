@@ -1,6 +1,8 @@
 # Arch Linux to Home Manager migration runbook
 
-Last reviewed: 2026-09-12
+Historical Arch runbook. For the current Linux/macOS configuration and setup steps, see [README.md](README.md).
+
+Last full inventory review: 2026-09-12
 
 This document is the migration plan for `~/my-home-manager`. It assumes Arch Linux remains the host operating system and standalone Home Manager manages the user environment.
 
@@ -12,7 +14,7 @@ Home Manager is **not** a replacement for Arch. Pacman must continue to manage t
 - Home directory: `/home/afredojala`
 - Architecture: `x86_64-linux`
 - Current `home.stateVersion`: `23.11`
-- Current flake inputs: Nixpkgs/Home Manager `23.11`
+- Current flake inputs: Nixpkgs/Home Manager `26.05`
 - `pacman.txt`: 722 explicitly installed packages
   - 671 repository packages
   - 51 foreign/AUR packages
