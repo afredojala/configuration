@@ -15,7 +15,7 @@ A separate nix-darwin configuration installs Homebrew and 1Password. Safari is p
 | Shell | Zsh, Starship, FZF, Zoxide (`z` and `zi`), existing aliases |
 | Editor | Helix, Pyrefly, Ruff, Rust Analyzer |
 | Terminal | Ghostty, Zellij, pinned zjstatus, Yazi, Lazygit |
-| Access | Git identity, GitHub CLI and HTTPS credential helper, SSH host entries |
+| Access | Git identity, GitHub CLI and HTTPS credential helper, SSH host entries and 1Password SSH agent |
 | Cloud | kubectl, Helm, K9s settings/aliases, Google Cloud CLI and GKE auth plugin |
 | Utilities | See `home.packages` in `home.nix`, including `rg`, `bat`, and `rsync` |
 | Mac apps | 1Password through nix-darwin/Homebrew; Safari provided by macOS |
@@ -81,10 +81,43 @@ gh auth status
 gcloud auth login
 ```
 
-Transfer SSH keys and required Kubernetes contexts securely, outside this repository.
-The SSH entries reference `~/.ssh/id_datadriven` and `~/.ssh/id_ed25519`. Git signing
-and 1Password's SSH agent require a separate key/agent choice. Application data and
-credentials are not installed by Home Manager.
+### SSH through 1Password
+
+1. On Linux, import the existing `~/.ssh/id_ed25519` into a private vault using
+   **New Item > SSH Key > Add Private Key > Import a Key File** in 1Password.
+2. On the Mac, sign in to the same account and confirm the imported SSH Key appears.
+3. Enable **Settings > Developer > Use the SSH Agent**. Under General, enable
+   keeping 1Password in the menu bar and starting it at login.
+4. Apply Home Manager with `just update macbook` and open a fresh terminal.
+   The SSH configuration and `SSH_AUTH_SOCK` are managed here; no manual config
+   editing or private-key export is needed.
+5. Verify the agent and the configured host:
+
+   ```sh
+   ssh-add -l
+   ssh-keygen -lf ~/.ssh/1password/id_ed25519.pub
+   ssh -G hetzner
+   ssh hetzner
+   ```
+
+The fingerprint listed by the agent should match the public-key fingerprint.
+Approve the connection in 1Password when prompted. If the agent cannot be reached,
+check that 1Password is running and its SSH agent is enabled.
+
+The repository contains only the Ed25519 public key. `hetzner` uses that key to
+select the matching private key from 1Password (`IdentitiesOnly yes`). Other hosts
+use the 1Password agent by default. `datadriven` explicitly retains its separate
+local `~/.ssh/id_datadriven` key and bypasses the agent until migrated. GitHub HTTPS
+access continues to use `gh`; Git signing is not configured.
+
+Linux uses the installed native 1Password app and `~/.1password/agent.sock`; enable
+its SSH agent before activating the Linux configuration. On macOS the native
+1Password agent socket is selected automatically. Keep existing private-key files
+until agent access is verified; this configuration does not delete them.
+
+See [1Password setup](https://developer.1password.com/docs/ssh/get-started/) and
+[public-key selection](https://developer.1password.com/docs/ssh/agent/advanced/).
+Kubernetes contexts and other application credentials remain outside this repository.
 
 ## Updates and recovery
 
