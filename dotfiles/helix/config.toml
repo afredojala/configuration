@@ -15,7 +15,6 @@ select = "underline"
 hidden = false
 parents = false
 
-
 [editor.lsp]
 display-messages = true
 display-inlay-hints = true
@@ -27,8 +26,6 @@ S-h = ":buffer-previous"
 S-l = ":buffer-next"
 S-left = ":buffer-previous"
 S-right = ":buffer-next"
-
-
 
 [editor.statusline]
 left = ["mode", "spinner"]

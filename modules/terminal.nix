@@ -3,7 +3,7 @@
   programs.ghostty = {
     enable = true;
     package = if pkgs.stdenv.hostPlatform.isDarwin then pkgs.ghostty-bin else pkgs.ghostty;
-    # Keep this batch scoped to the terminal app and its configuration.
+    # Manage the app directly, without a systemd service or extra Bat syntax.
     systemd.enable = false;
     installBatSyntax = false;
     enableZshIntegration = true;
