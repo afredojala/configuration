@@ -16,9 +16,9 @@ A separate nix-darwin configuration installs Homebrew and 1Password. Safari is p
 | Editor | Helix, Pyrefly, Ruff, Rust Analyzer |
 | Terminal | Ghostty, Zellij, pinned zjstatus, Yazi, Lazygit |
 | Access | Git identity, GitHub CLI and HTTPS credential helper, SSH host entries and 1Password SSH agent |
-| Cloud | kubectl, Helm, K9s settings/aliases, Google Cloud CLI and GKE auth plugin |
+| Cloud | kubectl, Helm, k3d, K9s settings/aliases, Google Cloud CLI and GKE auth plugin |
 | Utilities | See `home.packages` in `home.nix`, including `rg`, `bat`, and `rsync` |
-| Mac apps | 1Password through nix-darwin/Homebrew; Safari provided by macOS |
+| Mac apps | 1Password, Notion Calendar and OrbStack (Docker runtime for k3d) through nix-darwin/Homebrew; Safari provided by macOS |
 | Launcher (Mac) | Raycast cask through nix-darwin; login agent and Spotlight shortcut through Home Manager |
 | Window manager (Mac) | OmniWM through Home Manager, Caps shortcuts, app routing, Quake terminal |
 
@@ -86,8 +86,7 @@ quit OmniWM, then run `brew uninstall --cask omniwm` (without `--zap`) and
 `just update macbook`. Launch `~/Applications/Home Manager Apps/OmniWM.app` and
 verify Accessibility permission and any existing login item point to the new app.
 Apply `just mac-system-update` to remove OmniWM from the system's cask declaration.
-The system configuration preserves undeclared casks, so activation alone does not
-uninstall the old app.
+Homebrew cleanup on system activation uninstalls casks that are no longer declared.
 
 ## OmniWM shortcuts and workspaces
 
@@ -138,7 +137,7 @@ OmniWM's Quake settings if needed.
 | 2 | Ghostty |
 | 3 | ChatGPT, Claude |
 | 4 | Slack, Shortwave |
-| 5 | Morgen |
+| 5 | Notion Calendar |
 | 6–9 | Unassigned, available for ad hoc work |
 
 App rules assign the first app window when the app has no tracked windows.
@@ -198,8 +197,10 @@ Existing Ghostty files under `~/Library/Application Support/com.mitchellh.ghostt
 can override the managed configuration; inspect them if settings differ. See
 [Ghostty's loading order](https://ghostty.org/docs/config).
 
-The system target leaves Nix under its installer's control, preserves undeclared
-Homebrew packages, and does not automatically upgrade existing Homebrew packages.
+The system target leaves Nix under its installer's control, uninstalls undeclared
+Homebrew packages (without `--zap`, so app data stays), and does not automatically
+upgrade existing Homebrew packages. Add new apps to `hosts/macbook-system.nix`
+rather than installing them with `brew install`, or the next activation removes them.
 Review any existing-app conflicts before replacing manually installed apps.
 
 ## Accounts and credentials

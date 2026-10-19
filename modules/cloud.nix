@@ -3,6 +3,7 @@
   home.packages = with pkgs; [
     kubectl
     kubernetes-helm
+    k3d
     (google-cloud-sdk.withExtraComponents [ google-cloud-sdk.components.gke-gcloud-auth-plugin ])
   ];
 

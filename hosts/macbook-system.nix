@@ -29,19 +29,20 @@
       "slack"
       "claude"
       "chatgpt"
-      "morgen"
       "shortwave"
       "claude-code"
       "codex"
       "beeper"
       "raycast"
+      "notion-calendar"
+      "orbstack"
     ];
     masApps = {
       "1Password for Safari" = 1569813296;
       "uBlock Origin Lite" = 6745342698;
     };
     onActivation = {
-      cleanup = "none";
+      cleanup = "uninstall";
       autoUpdate = false;
       upgrade = false;
     };
