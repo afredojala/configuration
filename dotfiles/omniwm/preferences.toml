@@ -35,7 +35,9 @@ alpha = 1.0
 size = 0.0
 
 [settings.gaps.outer]
-top = 0.0
+# Clears SketchyBar (y_offset 3 + height 28). OmniWM subtracts each display's menu
+# bar inset first: 32 on the notched MacBook gives 0, the external display gets 32.
+top = 32.0
 bottom = 0.0
 left = 0.0
 right = 0.0

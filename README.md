@@ -62,7 +62,9 @@ To restore the native bar, remove the SketchyBar module import, enable
 `settings.workspaceBar.enabled` in OmniWM preferences, and set
 `_HIHideMenuBar = false` before applying Home Manager.
 
-A muted blue 1-point border indicates focus; configured gaps remain zero.
+A muted blue 1-point border indicates focus; gaps are zero except a 32-point top
+margin that keeps windows below SketchyBar. OmniWM subtracts the menu bar inset, so
+the notched MacBook gets no extra margin and external displays get the full 32 points.
 OmniWM may reserve minimal clearance for the border. All workspaces use Dwindle to
 divide the available screen between tiled windows. A single window fills the screen.
 Dwindle is also the default layout for new workspaces.
