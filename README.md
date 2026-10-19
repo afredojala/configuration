@@ -187,8 +187,10 @@ writing. The physical Caps-to-F18 mapping remains in `hosts/macbook-system.nix`.
    ```
 
 Ghostty is available at `~/Applications/Home Manager Apps/Ghostty.app`. It launches
-the managed Zsh; the account's login shell is unchanged. Left Option sends Alt for
-Zellij shortcuts; right Option retains macOS character input. Zellij starts manually.
+the managed Zsh; the account's login shell is unchanged. Both Option keys retain
+macOS character input; Command sends Alt for Zellij's h/j/k/l, n, i, o, f, y, g, +
+and - shortcuts, replacing Ghostty's own Command bindings for those keys. Zellij
+starts manually.
 Its status plugin may request permission to read session information and run the
 configured `whoami` and `uname -n` commands.
 
