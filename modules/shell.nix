@@ -33,4 +33,11 @@
   };
   programs.fzf = { enable = true; enableZshIntegration = true; };
   programs.zoxide = { enable = true; enableZshIntegration = true; };
+  # Per-project environments from .envrc; nix-direnv caches `use flake` shells.
+  programs.direnv = {
+    enable = true;
+    enableZshIntegration = true;
+    nix-direnv.enable = true;
+    config.global.hide_env_diff = true;
+  };
 }
