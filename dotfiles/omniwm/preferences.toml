@@ -1,0 +1,89 @@
+# Managed preferences only. Other OmniWM settings remain editable in the app.
+[settings.general]
+systemHyperTrigger = "F18" # Physical Caps Lock is mapped by nix-darwin.
+hyperKeyModifiers = "Control+Option+Command"
+ipcEnabled = true
+defaultLayoutType = "dwindle"
+
+[settings.dwindle]
+singleWindowFit = "fill"
+useGlobalGaps = true
+
+[settings.workspaceBar]
+position = "left"
+enabled = false
+autoHide = false
+revealModifier = "off"
+reserveLayoutSpace = false
+deduplicateAppIcons = true
+showItemBackgrounds = false
+
+[settings.borders]
+enabled = true
+width = 1.0
+
+[settings.borders.color]
+red = 0.35
+green = 0.50
+blue = 0.70
+alpha = 1.0
+
+[settings.gaps]
+size = 0.0
+
+[settings.gaps.outer]
+top = 0.0
+bottom = 0.0
+left = 0.0
+right = 0.0
+
+[settings.niri]
+visibleContainerCount = 1
+defaultContainerPrimarySpan = 1.0
+singleWindowFit = "fill"
+edgeGaps = false
+
+[settings.quakeTerminal]
+enabled = true
+position = "top"
+widthPercent = 90.0
+heightPercent = 60.0
+autoHide = true
+
+[hotkeys]
+toggleFullscreen = "Hyper+F"
+toggleFocusedWindowFloating = "Hyper+V"
+closeFocusedWindow = "Hyper+Q"
+openCommandPalette = "Hyper+Space"
+toggleQuakeTerminal = "Hyper+Return"
+workspaceBackAndForth = "Hyper+Shift+Tab"
+focusMonitorNext = "Hyper+M"
+focusMonitorPrevious = "Unassigned"
+"moveWorkspaceToMonitor.left" = "Hyper+Shift+M"
+"moveWorkspaceToMonitor.right" = "Hyper+Shift+N"
+"moveWindowToMonitor.left" = "Hyper+H"
+"moveWindowToMonitor.down" = "Hyper+J"
+"moveWindowToMonitor.up" = "Hyper+K"
+"moveWindowToMonitor.right" = "Hyper+L"
+
+# All existing workspaces use screen-filling tiling.
+[workspaceLayouts]
+"1" = "dwindle"
+"2" = "dwindle"
+"3" = "dwindle"
+"4" = "dwindle"
+"5" = "dwindle"
+"6" = "dwindle"
+"7" = "dwindle"
+"8" = "dwindle"
+"9" = "dwindle"
+
+# First app window's initial workspace; existing windows can be explicitly reapplied.
+[appWorkspaces]
+"com.apple.Safari" = "1"
+"com.mitchellh.ghostty" = "2"
+"com.openai.codex" = "3"
+"com.anthropic.claudefordesktop" = "3"
+"com.tinyspeck.slackmacgap" = "4"
+"com.electron.shortwave" = "4"
+"com.todesktop.210203cqcj00tw1" = "5"

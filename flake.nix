@@ -3,6 +3,8 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-26.05";
+    # OmniWM is not packaged on 26.05; keep other packages on stable.
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-darwin = {
       url = "github:nix-darwin/nix-darwin/nix-darwin-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -14,10 +16,11 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, nix-darwin, nix-homebrew, ... }:
+  outputs = { nixpkgs, nixpkgs-unstable, home-manager, nix-darwin, nix-homebrew, ... }:
     let
       mkHome = system: host: home-manager.lib.homeManagerConfiguration {
         pkgs = import nixpkgs { inherit system; };
+        extraSpecialArgs = { inherit nixpkgs-unstable; };
         modules = [ ./home.nix host ];
       };
     in {

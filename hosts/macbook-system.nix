@@ -8,6 +8,15 @@
   # Keep the existing Nix install managed by its installer.
   nix.enable = false;
 
+  # OmniWM listens to F18 directly, avoiding its Caps Lock tap-to-toggle behavior.
+  system.keyboard = {
+    enableKeyMapping = true;
+    userKeyMapping = [{
+      HIDKeyboardModifierMappingSrc = 30064771129; # Caps Lock (0x700000039)
+      HIDKeyboardModifierMappingDst = 30064771181; # F18 (0x70000006d)
+    }];
+  };
+
   nix-homebrew = {
     enable = true;
     user = "afredojala";
@@ -25,6 +34,7 @@
       "claude-code"
       "codex"
       "beeper"
+      "raycast"
     ];
     masApps = {
       "1Password for Safari" = 1569813296;

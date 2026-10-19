@@ -19,11 +19,140 @@ A separate nix-darwin configuration installs Homebrew and 1Password. Safari is p
 | Cloud | kubectl, Helm, K9s settings/aliases, Google Cloud CLI and GKE auth plugin |
 | Utilities | See `home.packages` in `home.nix`, including `rg`, `bat`, and `rsync` |
 | Mac apps | 1Password through nix-darwin/Homebrew; Safari provided by macOS |
+| Launcher (Mac) | Raycast cask through nix-darwin; login agent and Spotlight shortcut through Home Manager |
+| Window manager (Mac) | OmniWM through Home Manager, Caps shortcuts, app routing, Quake terminal |
 
 `modules/` contains shared configuration, `hosts/` contains host-specific settings,
 and `dotfiles/` contains editor and terminal configuration. `flake.lock` pins Nix
 inputs. Homebrew cask versions follow available releases rather than this lock file.
 Project environments remain outside the current scope.
+
+OmniWM uses a separate locked nixpkgs unstable input because it is unavailable on
+26.05. Its release is temporarily overridden to 0.7.6 to preserve the installed
+version. Remove the override when the packaged version catches up. Home Manager
+sets F18 as Hyper (Control+Option+Command) and migrates Option-prefixed
+keyboard shortcuts to Hyper. Shift remains available for moving windows.
+nix-darwin maps physical Caps Lock to F18, so a short tap no longer toggles
+capital letters. Apply both the system and Home Manager configurations for this
+setup; OmniWM must use F18 rather than its special Caps Lock trigger.
+SketchyBar replaces OmniWM's built-in workspace bar. It shows clickable workspaces
+1–9 on the left, with the focused workspace highlighted and empty workspaces dimmed.
+The bar follows [wthrajat/dotfiles-mac](https://github.com/wthrajat/dotfiles-mac):
+a transparent canvas with separate frosted Catppuccin Macchiato pills, a warm
+yellow active-workspace chip and sky-blue status icons. The Apple logo and
+workspace numbers share one pill. The right side shows memory (percent and GB in
+use), CPU load, Wi-Fi and Bluetooth (sharing one pill), date, clock and battery.
+Labels use SF Mono, which Home Manager copies from Terminal.app into
+`~/Library/Fonts/SF Mono`; icons use Symbols Nerd Font Mono. The Wi-Fi icon is
+bright when connected, dim when idle and crossed out when off. Bluetooth shows
+the number of connected devices when there are any. Clicking either opens its
+macOS settings. Battery uses a charge-level icon, a bolt on AC, and red below 20%.
+Home Manager installs SketchyBar and starts it and an OmniWM IPC bridge through
+launchd. Workspace events refresh the bar immediately; a 30-second refresh also
+recovers after a bar reload. Clock and battery refresh every 10 and 60 seconds.
+The former bar-on-switch agent is disabled.
+
+macOS's menu bar is set to auto-hide; moving to the top edge can still reveal it.
+Both the legacy global preference and macOS 26's Control Center preference are
+managed. SketchyBar uses the window level to remain visible over app windows.
+Configuration lives in `modules/sketchybar.nix` and `dotfiles/sketchybar/bridge.py`.
+Errors go to `/tmp/sketchybar.log` and `/tmp/omniwm-sketchybar.log`.
+To restore the native bar, remove the SketchyBar module import, enable
+`settings.workspaceBar.enabled` in OmniWM preferences, and set
+`_HIHideMenuBar = false` before applying Home Manager.
+
+A muted blue 1-point border indicates focus; configured gaps remain zero.
+OmniWM may reserve minimal clearance for the border. All workspaces use Dwindle to
+divide the available screen between tiled windows. A single window fills the screen.
+Dwindle is also the default layout for new workspaces.
+Managed workspace layouts are set in `[workspaceLayouts]` in preferences.toml.
+Niri shows one full-width column at a time;
+Caps + arrows moves focus along the scrolling layout, and Caps + F toggles
+layout fullscreen for the focused window.
+The activation preserves other settings, keeps the file writable in OmniWM, and
+backs up changes as `settings.toml.before-preferences-<hash>`. Open OmniWM once before
+the first activation so its complete settings file exists. Login behavior is
+not managed by Home Manager yet.
+
+Raycast is installed as a Homebrew cask by the system layer. Home Manager
+starts it at login through launchd and disables Spotlight's Command+Space
+shortcut without touching other symbolic hotkeys. Raycast 2.x keeps its own
+hotkey, extensions and settings in an encrypted database, so set Command+Space
+once in Raycast Settings → General → Raycast Hotkey, and use Export Settings &
+Data to back the rest up. Configuration lives in `modules/raycast.nix`.
+
+To migrate an existing Homebrew installation, build with `just build macbook`,
+quit OmniWM, then run `brew uninstall --cask omniwm` (without `--zap`) and
+`just update macbook`. Launch `~/Applications/Home Manager Apps/OmniWM.app` and
+verify Accessibility permission and any existing login item point to the new app.
+Apply `just mac-system-update` to remove OmniWM from the system's cask declaration.
+The system configuration preserves undeclared casks, so activation alone does not
+uninstall the old app.
+
+## OmniWM shortcuts and workspaces
+
+Caps Lock is the window-management modifier; Command retains normal Mac app
+shortcuts (for example Command+C/V and Command+Q). Caps+Q closes only the focused
+window. Quitting an app with Command+Q quits the app and all its windows.
+
+| Shortcut | Action |
+| --- | --- |
+| Caps + arrows | Focus another window |
+| Caps + Shift + arrows | Move the focused window |
+| Caps + M | Focus the next physical monitor |
+| Caps + Shift + M | Move the whole current workspace to the monitor on the left |
+| Caps + Shift + N | Move the whole current workspace to the monitor on the right |
+| Caps + H / L | Move the focused window to the monitor on the left / right |
+| Caps + J / K | Move the focused window to the monitor below / above |
+| Caps + 1–9 | Switch workspace |
+| Caps + Shift + 1–9 | Move the focused window to that workspace |
+| Caps + Tab | Focus the previous window |
+| Caps + Shift + Tab | Return to the previous workspace |
+| Caps + F | Toggle OmniWM fullscreen/maximize |
+| Caps + V | Toggle floating/tiled |
+| Caps + Q | Close the focused window |
+| Caps + Space | Open the command palette (search windows, apps and commands) |
+| Caps + Return | Show/hide the Quake terminal on the current workspace |
+| Caps + T | Toggle tabs for the current Niri column |
+| Caps + comma / period | Cycle column size backward / forward |
+| Caps + Shift + O | Show/hide Overview |
+| Caps + Shift + L | Switch the workspace between Niri and Dwindle |
+
+Monitor directions follow the physical display arrangement in macOS System Settings.
+For two side-by-side displays, use Caps+M to switch focus and Caps+H/L to move
+the focused window left/right between them. These commands move one window.
+Use Caps+Shift+M/N to move the entire workspace left/right instead. OmniWM's
+workspace monitor actions are directional; they do not wrap at the screen edge.
+
+Caps+Return replaces the previous maximize binding; use Caps+F for maximize.
+Caps+Return also replaces the old Caps+backtick Quake binding.
+The Quake terminal opens from the top at 90% width and 60% height and hides when
+focus moves away. It uses the built-in Ghostty engine and your Ghostty settings;
+it is separate from the normal Ghostty windows on workspace 2. A previously saved
+custom Quake frame can override this geometry; use Reset to Default Position in
+OmniWM's Quake settings if needed.
+
+| Workspace | Apps |
+| --- | --- |
+| 1 | Safari |
+| 2 | Ghostty |
+| 3 | ChatGPT, Claude |
+| 4 | Slack, Shortwave |
+| 5 | Morgen |
+| 6–9 | Unassigned, available for ad hoc work |
+
+App rules assign the first app window when the app has no tracked windows.
+Additional windows can open on the current workspace, and restored windows may
+retain their previous placement. Use Caps+Shift+number to move any window manually;
+`omniwmctl rule apply --pid <pid>` explicitly reapplies rules to an open app.
+The rules retain existing minimum sizes and UUIDs and do not override more
+specific dialog/title rules.
+
+The Mac imports `modules/omniwm.nix`; Linux does not. Edit the managed values,
+key bindings and app assignments in `dotfiles/omniwm/preferences.toml`, then run
+`just build macbook` and `just update macbook`. The small standard-library Python
+patcher keeps unrelated app settings editable and rejects duplicate bindings before
+writing. The physical Caps-to-F18 mapping remains in `hosts/macbook-system.nix`.
 
 ## First Mac setup
 
