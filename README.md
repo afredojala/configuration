@@ -122,6 +122,7 @@ For two side-by-side displays, use Caps+M to switch focus and Caps+H/L to move
 the focused window left/right between them. These commands move one window.
 Use Caps+Shift+M/N to move the entire workspace left/right instead. OmniWM's
 workspace monitor actions are directional; they do not wrap at the screen edge.
+The mouse cursor follows keyboard focus, so it jumps along when focus changes monitor.
 
 Caps+Return replaces the previous maximize binding; use Caps+F for maximize.
 Caps+Return also replaces the old Caps+backtick Quake binding.

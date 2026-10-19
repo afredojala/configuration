@@ -5,6 +5,9 @@ hyperKeyModifiers = "Control+Option+Command"
 ipcEnabled = true
 defaultLayoutType = "dwindle"
 
+[settings.focus]
+moveMouseToFocusedWindow = true # Cursor follows keyboard focus, including across monitors.
+
 [settings.dwindle]
 singleWindowFit = "fill"
 useGlobalGaps = true
