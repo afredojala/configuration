@@ -36,6 +36,7 @@
       "raycast"
       "notion-calendar"
       "orbstack"
+      "steam"
     ];
     masApps = {
       "1Password for Safari" = 1569813296;
