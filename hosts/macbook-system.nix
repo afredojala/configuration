@@ -37,6 +37,7 @@
       "notion-calendar"
       "orbstack"
       "steam"
+      "qobuz"
     ];
     masApps = {
       "1Password for Safari" = 1569813296;
