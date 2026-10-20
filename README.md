@@ -15,7 +15,7 @@ A separate nix-darwin configuration installs Homebrew and 1Password. Safari is p
 | Shell | Zsh, Starship, FZF, Zoxide (`z` and `zi`), existing aliases |
 | Editor | Helix, Pyrefly, Ruff, Rust Analyzer |
 | Terminal | Ghostty, Zellij, pinned zjstatus, Yazi, Lazygit |
-| Access | Git identity, GitHub CLI and HTTPS credential helper, SSH host entries and 1Password SSH agent |
+| Access | Git and Jujutsu (`jj`) identity, GitHub CLI and HTTPS credential helper, SSH host entries and 1Password SSH agent |
 | Cloud | kubectl, Helm, k3d, K9s settings/aliases, Google Cloud CLI and GKE auth plugin |
 | Utilities | See `home.packages` in `home.nix`, including `rg`, `bat`, and `rsync` |
 | Dev runtimes | Node.js (with npm) and uv, so project tests can run; direnv with nix-direnv for per-project `.envrc` |
