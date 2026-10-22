@@ -14,8 +14,12 @@
     age bat btop duf eza fastfetch fd glow jq just
     lazygit mkcert ncdu ripgrep sops tldr tree yazi rsync wget zip unzip
     # Global runtimes so project tests can run; uv also provides Python.
-    nodejs uv
+    # rustup rather than nixpkgs rustc so projects can pin toolchains via rust-toolchain.toml.
+    nodejs uv rustup
   ];
+
+  # Binaries from `cargo install`.
+  home.sessionPath = [ "$HOME/.cargo/bin" ];
 
   programs.home-manager.enable = true;
 }
