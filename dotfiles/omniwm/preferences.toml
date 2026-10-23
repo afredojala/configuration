@@ -33,6 +33,9 @@ alpha = 1.0
 
 [settings.gaps]
 size = 0.0
+# Single-window "fill" counts as OmniWM full screen; without this it ignores the
+# top gap and slides under SketchyBar on the external display.
+fullscreenUsesOuterGaps = true
 
 [settings.gaps.outer]
 # Clears SketchyBar (y_offset 3 + height 28). OmniWM subtracts each display's menu

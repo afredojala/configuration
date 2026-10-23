@@ -66,7 +66,8 @@ A muted blue 1-point border indicates focus; gaps are zero except a 32-point top
 margin that keeps windows below SketchyBar. OmniWM subtracts the menu bar inset, so
 the notched MacBook gets no extra margin and external displays get the full 32 points.
 OmniWM may reserve minimal clearance for the border. All workspaces use Dwindle to
-divide the available screen between tiled windows. A single window fills the screen.
+divide the available screen between tiled windows. A single window, like Caps + F
+fullscreen, fills the screen but keeps the top margin so it stays below SketchyBar.
 Dwindle is also the default layout for new workspaces.
 Managed workspace layouts are set in `[workspaceLayouts]` in preferences.toml.
 Niri shows one full-width column at a time;
