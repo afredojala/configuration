@@ -5,6 +5,14 @@ let
     exec ${python}/bin/python3 ${../dotfiles/sketchybar/bridge.py} \
       ${pkgs.sketchybar}/bin/sketchybar "$@"
   '';
+  # Python has no EventKit bindings in nixpkgs. The embedded Info.plist lets
+  # macOS prompt for Calendar access.
+  meeting = pkgs.runCommandCC "sketchybar-meeting" { } ''
+    mkdir -p $out/bin
+    $CC -fobjc-arc -O2 -framework Foundation -framework EventKit \
+      -sectcreate __TEXT __info_plist ${../dotfiles/sketchybar/meeting.plist} \
+      ${../dotfiles/sketchybar/meeting.m} -o $out/bin/sketchybar-meeting
+  '';
 in {
   home.packages = [ pkgs.sketchybar pkgs.nerd-fonts.symbols-only ];
   # SF Mono ships inside Terminal.app but is not registered system-wide.
@@ -96,7 +104,9 @@ in {
       sketchybar --add item cpu right --set cpu icon="󰍛" update_freq=10 padding_right=10 \
         script="${bridge} cpu" click_script="/usr/bin/open -a 'Activity Monitor'" \
         --add item memory right --set memory icon="󰘚" update_freq=30 \
-        script="${bridge} memory" click_script="/usr/bin/open -a 'Activity Monitor'" \
+        script="${bridge} memory" click_script="/usr/bin/open -a 'Activity Monitor'"
+      # The meeting agent fills this in and hides it when nothing is coming up.
+      sketchybar --add item meeting right --set meeting icon="󰕧" drawing=off \
         --update
     '';
   };
@@ -118,6 +128,16 @@ in {
       KeepAlive = true;
       ThrottleInterval = 10;
       StandardErrorPath = "/tmp/omniwm-sketchybar.log";
+    };
+  };
+  launchd.agents.sketchybar-meeting = {
+    enable = true;
+    config = {
+      ProgramArguments = [ "${meeting}/bin/sketchybar-meeting" "${pkgs.sketchybar}/bin/sketchybar" ];
+      RunAtLoad = true;
+      KeepAlive = true;
+      ThrottleInterval = 10;
+      StandardErrorPath = "/tmp/sketchybar-meeting.log";
     };
   };
   targets.darwin.defaults.NSGlobalDomain._HIHideMenuBar = true;

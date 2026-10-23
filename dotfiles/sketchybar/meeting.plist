@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>CFBundleIdentifier</key>
+  <string>local.sketchybar.meeting</string>
+  <key>CFBundleName</key>
+  <string>SketchyBar Meeting</string>
+  <key>NSCalendarsFullAccessUsageDescription</key>
+  <string>Visar nästa möte i SketchyBar.</string>
+  <key>NSCalendarsUsageDescription</key>
+  <string>Visar nästa möte i SketchyBar.</string>
+</dict>
+</plist>

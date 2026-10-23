@@ -53,11 +53,22 @@ launchd. Workspace events refresh the bar immediately; a 30-second refresh also
 recovers after a bar reload. Clock and battery refresh every 10 and 60 seconds.
 The former bar-on-switch agent is disabled.
 
+The leftmost pill on the right shows the next meeting within 24 hours that has
+a Google Meet, Zoom or Teams link, such as `om 12 min · Standup`, and clicking it
+opens the link. It reads every account in macOS Calendar, so add your Google
+account under System Settings → Internet Accounts. A meeting stays visible for
+10 minutes after it starts. All-day and declined events are skipped, and the pill
+hides when nothing is coming up. A small EventKit agent (`dotfiles/sketchybar/meeting.m`)
+updates it every 30 seconds and when the calendar changes. Approve its Calendar
+access prompt after the first activation. Until you do, the pill links to the
+privacy settings. A rebuilt agent may ask for access again.
+
 macOS's menu bar is set to auto-hide; moving to the top edge can still reveal it.
 Both the legacy global preference and macOS 26's Control Center preference are
 managed. SketchyBar uses the window level to remain visible over app windows.
 Configuration lives in `modules/sketchybar.nix` and `dotfiles/sketchybar/bridge.py`.
-Errors go to `/tmp/sketchybar.log` and `/tmp/omniwm-sketchybar.log`.
+Errors go to `/tmp/sketchybar.log`, `/tmp/omniwm-sketchybar.log` and
+`/tmp/sketchybar-meeting.log`.
 To restore the native bar, remove the SketchyBar module import, enable
 `settings.workspaceBar.enabled` in OmniWM preferences, and set
 `_HIHideMenuBar = false` before applying Home Manager.
