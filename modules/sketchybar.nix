@@ -28,6 +28,8 @@ in {
   '';
   xdg.configFile."sketchybar/sketchybarrc" = {
     executable = true;
+    # The running bar keeps its old items until it rereads the config.
+    onChange = "${pkgs.sketchybar}/bin/sketchybar --reload || true";
     text = ''
       #!${pkgs.runtimeShell}
       export PATH="${pkgs.sketchybar}/bin:$HOME/.nix-profile/bin:/usr/bin:/bin"
