@@ -53,7 +53,7 @@ launchd. Workspace events refresh the bar immediately; a 30-second refresh also
 recovers after a bar reload. Clock and battery refresh every 10 and 60 seconds.
 The former bar-on-switch agent is disabled.
 
-The leftmost pill on the right shows the next meeting within 24 hours that has
+A pill to the right of the workspaces shows the next meeting within 24 hours that has
 a Google Meet, Zoom or Teams link, such as `om 12 min · Standup`, and clicking it
 opens the link. It reads every account in macOS Calendar, so add your Google
 account under System Settings → Internet Accounts. A meeting stays visible for

@@ -108,7 +108,8 @@ in {
         --add item memory right --set memory icon="󰘚" update_freq=30 \
         script="${bridge} memory" click_script="/usr/bin/open -a 'Activity Monitor'"
       # The meeting agent fills this in and hides it when nothing is coming up.
-      sketchybar --add item meeting right --set meeting icon="󰕧" drawing=off \
+      # It sits on the left because the notch hides the middle of the bar.
+      sketchybar --add item meeting left --set meeting icon="󰕧" drawing=off padding_left=10 \
         --update
     '';
   };
