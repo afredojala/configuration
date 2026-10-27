@@ -42,6 +42,7 @@
     masApps = {
       "1Password for Safari" = 1569813296;
       "uBlock Origin Lite" = 6745342698;
+      "Amphetamine" = 937984704;
     };
     onActivation = {
       cleanup = "uninstall";
