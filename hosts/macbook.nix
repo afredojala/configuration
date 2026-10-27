@@ -1,6 +1,6 @@
 { ... }:
 {
-  imports = [ ../modules/omniwm.nix ../modules/sketchybar.nix ../modules/raycast.nix ];
+  imports = [ ../modules/omniwm.nix ../modules/sketchybar.nix ../modules/raycast.nix ../modules/obsidian.nix ];
 
   home.username = "afredojala";
   home.homeDirectory = "/Users/afredojala";

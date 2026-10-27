@@ -20,7 +20,7 @@ A separate nix-darwin configuration installs Homebrew and 1Password. Safari is p
 | Utilities | See `home.packages` in `home.nix`, including `rg`, `bat`, and `rsync` |
 | Dev runtimes | Node.js (with npm), uv and rustup (Rust toolchains), so project tests can run; direnv with nix-direnv for per-project `.envrc` |
 | Mac apps | 1Password, Notion Calendar, OrbStack (Docker runtime for k3d), Steam, Qobuz and Obsidian through nix-darwin/Homebrew; Amphetamine from the Mac App Store; Safari provided by macOS |
-| Launcher (Mac) | Raycast cask through nix-darwin; login agent and Spotlight shortcut through Home Manager |
+| Launcher (Mac) | Raycast cask through nix-darwin; login agent, Spotlight shortcut and "Log to Daily Note" script command through Home Manager |
 | Window manager (Mac) | OmniWM through Home Manager, Caps shortcuts, app routing, Quake terminal |
 
 `modules/` contains shared configuration, `hosts/` contains host-specific settings,
@@ -95,6 +95,13 @@ shortcut without touching other symbolic hotkeys. Raycast 2.x keeps its own
 hotkey, extensions and settings in an encrypted database, so set Command+Space
 once in Raycast Settings → General → Raycast Hotkey, and use Export Settings &
 Data to back the rest up. Configuration lives in `modules/raycast.nix`.
+
+The Raycast command "Log to Daily Note" adds `- HH:MM - text` to the end of
+the `## Logg` section of today's note in the `~/Documents/Foffe` Obsidian vault,
+and creates the note from `Templates/Daily.md` if needed. Home Manager installs
+it in `~/.config/raycast/scripts`. Add that folder once in Raycast Settings →
+Extensions → Script Commands, then record a hotkey for the command. The helper
+lives in `modules/obsidian.nix` and `dotfiles/obsidian/daily-log.py`.
 
 To migrate an existing Homebrew installation, build with `just build macbook`,
 quit OmniWM, then run `brew uninstall --cask omniwm` (without `--zap`) and
