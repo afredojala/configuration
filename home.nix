@@ -12,7 +12,7 @@
 
   home.packages = with pkgs; [
     age bat btop duf eza fastfetch fd glow jq just
-    lazygit mkcert ncdu ripgrep sops tldr tree yazi rsync wget zip unzip
+    lazygit mkcert ncdu ripgrep sops tldr tree yazi rsync wget xz zip unzip
     # Global runtimes so project tests can run; uv also provides Python.
     # rustup rather than nixpkgs rustc so projects can pin toolchains via rust-toolchain.toml.
     nodejs uv rustup
