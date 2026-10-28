@@ -9,7 +9,7 @@ documentation. Read it before changing behaviour it describes.
 
 | Path | Purpose |
 | --- | --- |
-| `flake.nix` | Inputs (nixpkgs 26.05, unstable for OmniWM only, Home Manager, nix-darwin, nix-homebrew) and the three outputs |
+| `flake.nix` | Inputs (nixpkgs 26.05, unstable for OmniWM, herdr and pi, Home Manager, nix-darwin, nix-homebrew) and the three outputs |
 | `home.nix` | Shared Home Manager entry point: module imports and `home.packages` |
 | `modules/*.nix` | Shared Home Manager modules, one per area (shell, git, helix, terminal, cloud …) |
 | `hosts/macbook.nix` | Mac-only Home Manager settings; imports `omniwm`, `sketchybar`, `raycast` |
@@ -58,7 +58,8 @@ and look under `<out>/home-files` and `<out>/home-path/bin`.
 - Flakes only see tracked files. Run `git add` on new modules and dotfiles before building.
 - Keep `home.stateVersion` and `system.stateVersion` unchanged.
 - Keep packages on stable nixpkgs. Use `nixpkgs-unstable` only when stable lacks
-  the package (currently only OmniWM), and explain why in a comment.
+  the package or is a major version behind (currently OmniWM, herdr and pi), and
+  explain why in a comment.
 - Comments are short and explain *why*, not what.
 - Update `README.md` when a change adds or alters something it lists, such as
   the "What's included" table or the shortcut tables.

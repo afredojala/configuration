@@ -3,7 +3,8 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-26.05";
-    # OmniWM and herdr are not packaged on 26.05; keep other packages on stable.
+    # OmniWM and herdr are not packaged on 26.05, and its pi is a major version
+    # behind; keep other packages on stable.
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-darwin = {
       url = "github:nix-darwin/nix-darwin/nix-darwin-26.05";

@@ -1,4 +1,7 @@
 { pkgs, nixpkgs-unstable, ... }:
+let
+  unstable = nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+in
 {
   imports = [
     ./modules/shell.nix
@@ -18,7 +21,9 @@
     # rustup rather than nixpkgs rustc so projects can pin toolchains via rust-toolchain.toml.
     nodejs uv rustup
     # herdr is not packaged on 26.05.
-    nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system}.herdr
+    unstable.herdr
+    # 26.05 ships pi 0.75; unstable tracks the current 1.x releases.
+    unstable.pi-coding-agent
   ];
 
   # Binaries from `cargo install`.
