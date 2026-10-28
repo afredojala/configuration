@@ -9,6 +9,7 @@ in
     ./modules/git.nix
     ./modules/zellij.nix
     ./modules/herdr.nix
+    ./modules/pi.nix
     ./modules/terminal.nix
     ./modules/access.nix
     ./modules/cloud.nix

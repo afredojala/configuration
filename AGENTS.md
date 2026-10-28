@@ -15,7 +15,7 @@ documentation. Read it before changing behaviour it describes.
 | `hosts/macbook.nix` | Mac-only Home Manager settings; imports `omniwm`, `sketchybar`, `raycast` |
 | `hosts/linux.nix` | Linux-only Home Manager settings |
 | `hosts/macbook-system.nix` | nix-darwin system layer: Homebrew casks, Mac App Store apps, keyboard mapping |
-| `dotfiles/` | Raw config files read by modules (Helix, K9s, Zellij, SSH, OmniWM, SketchyBar) |
+| `dotfiles/` | Raw config files read by modules (Helix, K9s, Zellij, herdr, pi, SSH, OmniWM, SketchyBar) |
 
 Flake outputs:
 

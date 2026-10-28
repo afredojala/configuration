@@ -14,7 +14,7 @@ A separate nix-darwin configuration installs Homebrew and 1Password. Safari is p
 | --- | --- |
 | Shell | Zsh, Starship, FZF, Zoxide (`z` and `zi`), existing aliases, `cw` (Claude Code in a new worktree) |
 | Editor | Helix, Pyrefly, Ruff, Rust Analyzer |
-| Terminal | Ghostty, Zellij, pinned zjstatus, Yazi, Lazygit, herdr (agent multiplexer), pi (coding agent) |
+| Terminal | Ghostty, Zellij, pinned zjstatus, Yazi, Lazygit, herdr (agent multiplexer), pi (coding agent) with permission, subagent and question extensions |
 | Access | Git and Jujutsu (`jj`) identity, GitHub CLI and HTTPS credential helper, SSH host entries and 1Password SSH agent |
 | Cloud | kubectl, Helm, k3d, K9s settings/aliases, Google Cloud CLI and GKE auth plugin |
 | Utilities | See `home.packages` in `home.nix`, including `rg`, `bat`, and `rsync` |
@@ -222,6 +222,14 @@ Claude Code and Helix use. On the Mac, Home Manager disables the macOS Ctrl+Spac
 input-source shortcut; switch layouts with Ctrl+Option+Space or the Globe key.
 `~/.config/herdr/config.toml` is managed from `dotfiles/herdr/`, so settings
 changed inside herdr do not persist.
+
+pi's extensions, subagents (`scout`, `planner`, `reviewer`, `worker`) and workflow
+prompts (`/implement`, `/scout-and-plan`, `/implement-and-review`) come from
+`dotfiles/pi/`, which notes their upstream version and local changes. pi confirms
+destructive shell commands and refuses writes to `.env`, `.git/`, `.ssh/` and
+`node_modules/`. Its `settings.json` and `auth.json` stay unmanaged, because pi
+writes them itself. Run `herdr integration install pi` once so herdr shows pi's
+status.
 
 Existing Ghostty files under `~/Library/Application Support/com.mitchellh.ghostty/`
 can override the managed configuration; inspect them if settings differ. See
