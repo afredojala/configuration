@@ -14,7 +14,7 @@ A separate nix-darwin configuration installs Homebrew and 1Password. Safari is p
 | --- | --- |
 | Shell | Zsh, Starship, FZF, Zoxide (`z` and `zi`), existing aliases |
 | Editor | Helix, Pyrefly, Ruff, Rust Analyzer |
-| Terminal | Ghostty, Zellij, pinned zjstatus, Yazi, Lazygit |
+| Terminal | Ghostty, Zellij, pinned zjstatus, Yazi, Lazygit, herdr (agent multiplexer) |
 | Access | Git and Jujutsu (`jj`) identity, GitHub CLI and HTTPS credential helper, SSH host entries and 1Password SSH agent |
 | Cloud | kubectl, Helm, k3d, K9s settings/aliases, Google Cloud CLI and GKE auth plugin |
 | Utilities | See `home.packages` in `home.nix`, including `rg`, `bat`, and `rsync` |
@@ -28,9 +28,9 @@ and `dotfiles/` contains editor and terminal configuration. `flake.lock` pins Ni
 inputs. Homebrew cask versions follow available releases rather than this lock file.
 Project environments remain outside the current scope.
 
-OmniWM uses a separate locked nixpkgs unstable input because it is unavailable on
-26.05. Its release is temporarily overridden to 0.7.6 to preserve the installed
-version. Remove the override when the packaged version catches up. Home Manager
+OmniWM and herdr use a separate locked nixpkgs unstable input because they are
+unavailable on 26.05. OmniWM's release is temporarily overridden to 0.7.6 to preserve
+the installed version. Remove the override when the packaged version catches up. Home Manager
 sets F18 as Hyper (Control+Option+Command) and migrates Option-prefixed
 keyboard shortcuts to Hyper. Shift remains available for moving windows.
 nix-darwin maps physical Caps Lock to F18, so a short tap no longer toggles

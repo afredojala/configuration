@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, nixpkgs-unstable, ... }:
 {
   imports = [
     ./modules/shell.nix
@@ -16,6 +16,8 @@
     # Global runtimes so project tests can run; uv also provides Python.
     # rustup rather than nixpkgs rustc so projects can pin toolchains via rust-toolchain.toml.
     nodejs uv rustup
+    # herdr is not packaged on 26.05.
+    nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system}.herdr
   ];
 
   # Binaries from `cargo install`.
