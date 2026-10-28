@@ -24,6 +24,8 @@
       gpl = "git pull";
       gst = "git stash";
       gcheck = "git checkout";
+      # Claude Code in a fresh git worktree, so agent work stays off the main checkout.
+      cw = "claude -w";
     };
   };
   programs.starship = {

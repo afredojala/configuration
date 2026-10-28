@@ -12,7 +12,7 @@ A separate nix-darwin configuration installs Homebrew and 1Password. Safari is p
 
 | Area | Configuration |
 | --- | --- |
-| Shell | Zsh, Starship, FZF, Zoxide (`z` and `zi`), existing aliases |
+| Shell | Zsh, Starship, FZF, Zoxide (`z` and `zi`), existing aliases, `cw` (Claude Code in a new worktree) |
 | Editor | Helix, Pyrefly, Ruff, Rust Analyzer |
 | Terminal | Ghostty, Zellij, pinned zjstatus, Yazi, Lazygit, herdr (agent multiplexer) |
 | Access | Git and Jujutsu (`jj`) identity, GitHub CLI and HTTPS credential helper, SSH host entries and 1Password SSH agent |
