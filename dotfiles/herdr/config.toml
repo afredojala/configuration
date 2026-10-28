@@ -1,0 +1,10 @@
+onboarding = false
+
+[theme]
+name = "nord"
+auto_switch = false
+
+[keys]
+# ctrl+b is taken by Claude Code (background task) and Helix (page up).
+# macOS's own Ctrl+Space input-source shortcut is disabled in modules/herdr.nix.
+prefix = "ctrl+space"

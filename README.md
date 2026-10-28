@@ -216,6 +216,12 @@ starts manually.
 Its status plugin may request permission to read session information and run the
 configured `whoami` and `uname -n` commands.
 
+herdr also starts manually. Its prefix is Ctrl+Space rather than Ctrl+B, which
+Claude Code and Helix use. On the Mac, Home Manager disables the macOS Ctrl+Space
+input-source shortcut; switch layouts with Ctrl+Option+Space or the Globe key.
+`~/.config/herdr/config.toml` is managed from `dotfiles/herdr/`, so settings
+changed inside herdr do not persist.
+
 Existing Ghostty files under `~/Library/Application Support/com.mitchellh.ghostty/`
 can override the managed configuration; inspect them if settings differ. See
 [Ghostty's loading order](https://ghostty.org/docs/config).

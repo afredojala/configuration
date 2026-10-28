@@ -5,6 +5,7 @@
     ./modules/helix.nix
     ./modules/git.nix
     ./modules/zellij.nix
+    ./modules/herdr.nix
     ./modules/terminal.nix
     ./modules/access.nix
     ./modules/cloud.nix
