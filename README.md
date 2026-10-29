@@ -221,7 +221,16 @@ herdr also starts manually. Its prefix is Ctrl+Space rather than Ctrl+B, which
 Claude Code and Helix use. On the Mac, Home Manager disables the macOS Ctrl+Space
 input-source shortcut; switch layouts with Ctrl+Option+Space or the Globe key.
 `~/.config/herdr/config.toml` is managed from `dotfiles/herdr/`, so settings
-changed inside herdr do not persist.
+changed inside herdr do not persist. It sends a macOS notification when a
+background agent finishes or needs input, and adds these prefix shortcuts:
+
+| Shortcut | Action |
+| --- | --- |
+| `Prefix` `Shift+L` | Lazygit popup |
+| `Prefix` `F` | Yazi popup |
+| `Prefix` `A` / `Shift+A` | Next / previous agent pane |
+| `Prefix` `Shift+J` / `Shift+K` | Next / previous workspace |
+| `Prefix` `Tab` | Toggle between the last two panes (`Shift+Tab` still cycles) |
 
 pi's extensions, subagents (`scout`, `planner`, `reviewer`, `worker`) and workflow
 prompts (`/implement`, `/scout-and-plan`, `/implement-and-review`) come from

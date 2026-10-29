@@ -4,7 +4,41 @@ onboarding = false
 name = "nord"
 auto_switch = false
 
+[update]
+# Nix owns the binary, so herdr's own update prompts are noise.
+version_check = false
+
+[ui]
+agent_panel_sort = "priority"
+status_indicators = "symbols"
+
+[ui.toast]
+# Notify when a background agent finishes or needs input.
+delivery = "system"
+
 [keys]
 # ctrl+b is taken by Claude Code (background task) and Helix (page up).
 # macOS's own Ctrl+Space input-source shortcut is disabled in modules/herdr.nix.
 prefix = "ctrl+space"
+next_agent = "prefix+a"
+previous_agent = "prefix+shift+a"
+next_workspace = "prefix+shift+j"
+previous_workspace = "prefix+shift+k"
+# Tab toggles between the last two panes; shift+tab still cycles.
+last_pane = "prefix+tab"
+cycle_pane_next = ""
+
+# shift+l because prefix+l is focus_pane_right.
+[[keys.command]]
+key = "prefix+shift+l"
+type = "popup"
+command = "lazygit"
+width = "90%"
+height = "90%"
+
+[[keys.command]]
+key = "prefix+f"
+type = "popup"
+command = "yazi"
+width = "90%"
+height = "90%"
