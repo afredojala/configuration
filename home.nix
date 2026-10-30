@@ -28,7 +28,7 @@ in
   ];
 
   # Binaries from `cargo install`.
-  home.sessionPath = [ "$HOME/.cargo/bin" ];
+  home.sessionPath = [ "$HOME/.cargo/bin" "$HOME/.local/bin" ];
 
   programs.home-manager.enable = true;
 }
