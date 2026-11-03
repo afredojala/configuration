@@ -39,6 +39,8 @@
       "steam"
       "qobuz"
       "obsidian"
+      # Standalone app rather than the Mac App Store build, so the tailscale CLI works too.
+      "tailscale-app"
     ];
     masApps = {
       "1Password for Safari" = 1569813296;
