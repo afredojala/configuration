@@ -240,6 +240,11 @@ destructive shell commands and refuses writes to `.env`, `.git/`, `.ssh/` and
 writes them itself. Run `herdr integration install pi` once so herdr shows pi's
 status.
 
+On the Mac, a launchd agent runs Herdr Mobile's `herdr-notify` script from
+`~/repos/herdriOS`. It pushes blocked and erroring agents to ntfy for the iPhone
+app and logs to `~/Library/Logs/herdr-notify.log`. The ntfy topic works like a
+password, so it stays out of this repo: put it in `~/.config/herdr-notify/topic`.
+
 Existing Ghostty files under `~/Library/Application Support/com.mitchellh.ghostty/`
 can override the managed configuration; inspect them if settings differ. See
 [Ghostty's loading order](https://ghostty.org/docs/config).
