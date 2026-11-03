@@ -19,7 +19,7 @@ A separate nix-darwin configuration installs Homebrew and 1Password. Safari is p
 | Cloud | kubectl, Helm, k3d, K9s settings/aliases, Google Cloud CLI and GKE auth plugin, Azure CLI, Pulumi |
 | Utilities | See `home.packages` in `home.nix`, including `rg`, `bat`, and `rsync` |
 | Dev runtimes | Node.js (with npm), uv and rustup (Rust toolchains), so project tests can run; direnv with nix-direnv for per-project `.envrc` |
-| Mac apps | 1Password, Notion Calendar, OrbStack (Docker runtime for k3d), Steam, Qobuz, Obsidian and Tailscale through nix-darwin/Homebrew; Amphetamine from the Mac App Store; Safari provided by macOS |
+| Mac apps | 1Password, Notion Calendar, OrbStack (Docker runtime for k3d), Steam, Qobuz, Obsidian and Tailscale through nix-darwin/Homebrew; Amphetamine and Xcode from the Mac App Store; Safari provided by macOS |
 | Launcher (Mac) | Raycast cask through nix-darwin; login agent, Spotlight shortcut and "Log to Daily Note" script command through Home Manager |
 | Window manager (Mac) | OmniWM through Home Manager, Caps shortcuts, app routing, Quake terminal |
 
