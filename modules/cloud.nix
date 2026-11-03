@@ -4,6 +4,9 @@
     kubectl
     kubernetes-helm
     k3d
+    azure-cli
+    # pulumi is several releases behind; the binary build tracks upstream.
+    pulumi-bin
     (google-cloud-sdk.withExtraComponents [ google-cloud-sdk.components.gke-gcloud-auth-plugin ])
   ];
 
