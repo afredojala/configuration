@@ -2,12 +2,12 @@
 let
   omniwm = nixpkgs-unstable.legacyPackages.aarch64-darwin.omniwm.overrideAttrs (_: {
     # Keep the installed release until nixpkgs catches up from 0.7.4.
-    version = "0.7.6";
+    version = "0.8.0";
     # Preserve the upstream code signature; Darwin fixups modify the bundle.
     dontFixup = true;
     src = nixpkgs-unstable.legacyPackages.aarch64-darwin.fetchurl {
-      url = "https://github.com/OmniNull/OmniWM/releases/download/v0.7.6/OmniWM-v0.7.6.zip";
-      hash = "sha256-7IxhRqbyGnnhxArHDWESF2K5PPU80wjmPrROis4g/Nw=";
+      url = "https://github.com/OmniNull/OmniWM/releases/download/v0.8.0/OmniWM-v0.8.0.zip";
+      hash = "sha256-b3+z4hHeOoPncrExgAaAyz0g1MY4gRofAhIP0iXwPMc=";
     };
   });
 in
