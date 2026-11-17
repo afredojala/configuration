@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, ... }:
 {
   imports = [ ../modules/omniwm.nix ../modules/sketchybar.nix ../modules/raycast.nix ../modules/obsidian.nix ../modules/herdr-notify.nix ];
 
@@ -20,4 +20,16 @@
   # every app's App Management grant. Copying Ghostty and OmniWM only needs the grant
   # when one of them changes.
   targets.darwin.copyApps.enableChecks = false;
+
+  # Polar night, drawn from herdr's polar-aurora theme. macOS stores the
+  # resolved store path, so compare against that to skip redundant resets.
+  home.file.".local/share/wallpaper/polar-night.png".source = ../dotfiles/wallpaper/polar-night.png;
+  home.activation.wallpaper = lib.hm.dag.entryAfter [ "linkGeneration" ] ''
+    wallpaper=$(/usr/bin/readlink -f "$HOME/.local/share/wallpaper/polar-night.png")
+    current=$(/usr/bin/osascript -e 'tell application "System Events" to get picture of desktop 1' 2>/dev/null || true)
+    if [ "$current" != "$wallpaper" ]; then
+      run /usr/bin/osascript -e "tell application \"System Events\" to tell every desktop to set picture to POSIX file \"$wallpaper\"" \
+        || echo "Could not set the wallpaper; allow Automation for System Events." >&2
+    fi
+  '';
 }

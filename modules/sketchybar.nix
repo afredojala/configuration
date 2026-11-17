@@ -53,13 +53,14 @@ in {
     text = ''
       #!${pkgs.runtimeShell}
       export PATH="${pkgs.sketchybar}/bin:$HOME/.nix-profile/bin:/usr/bin:/bin"
-      # Frosted Catppuccin Macchiato pills after wthrajat/dotfiles-mac.
-      TEXT=0xffcad3f5
-      SUBTEXT0=0xffa5adcb
-      SURFACE1=0xff494d64
-      SKY=0xff91d7e3
-      PILL_BG=0xbf24273a
-      PILL_BORDER=0x80494d64
+      # Frosted pills after wthrajat/dotfiles-mac, in herdr's polar-aurora
+      # colours so the bar matches the terminal and the wallpaper.
+      TEXT=0xffcfdae2
+      SUBTEXT0=0xffa9bac6
+      SURFACE1=0xff526270
+      TEAL=0xff47d3d6
+      PILL_BG=0xcc151d26
+      PILL_BORDER=0xff1d3547
       TRANSPARENT=0x00000000
       ICON_FONT="Symbols Nerd Font Mono:Regular:13.0"
       LABEL_FONT="SF Mono:Medium:11.5"
@@ -96,7 +97,7 @@ in {
       # Each status item on the right is its own frosted pill.
       sketchybar --default background.drawing=on background.color=$PILL_BG \
         background.height=24 background.corner_radius=10 background.border_width=1 \
-        background.border_color=$PILL_BORDER blur_radius=30 icon.color=$SKY \
+        background.border_color=$PILL_BORDER blur_radius=30 icon.color=$TEAL \
         icon.padding_left=10 icon.padding_right=4 label.padding_left=4 label.padding_right=12 \
         padding_left=5 padding_right=5
       sketchybar --add item battery right --set battery update_freq=60 \

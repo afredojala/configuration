@@ -40,9 +40,9 @@ def update_workspaces():
         active = ws.get('isFocused', False)
         occupied = ws.get('counts', {}).get('total', 0) > 0
         args += ['--set', f'workspace.{name}',
-                 f'background.color={"0xffeed49f" if active else "0x00000000"}',
+                 f'background.color={"0xff6ef2b8" if active else "0x00000000"}',
                  f'background.drawing={"on" if active else "off"}',
-                 f'label.color={"0xff181926" if active else "0xffcad3f5" if occupied else "0xff8087a2"}']
+                 f'label.color={"0xff0b1016" if active else "0xffcfdae2" if occupied else "0xff526270"}']
     if args:
         bar(*args)
 
@@ -66,10 +66,10 @@ elif ACTION == 'memory':
         text=True, timeout=5,
     ).strip()
     status, color = {
-        '1': ('Normal', '0xffa6da95'),
-        '2': ('Varning', '0xffeed49f'),
-        '4': ('Kritiskt', '0xffed8796'),
-    }.get(pressure, ('Okänt', '0xff8087a2'))
+        '1': ('Normal', '0xff55dfa2'),
+        '2': ('Varning', '0xffe5c568'),
+        '4': ('Kritiskt', '0xffee7189'),
+    }.get(pressure, ('Okänt', '0xff526270'))
     bar('--set', 'memory', f'label={status} | {used:.1f}G',
         'icon.color=' + color)
 elif ACTION == 'battery':
@@ -79,7 +79,7 @@ elif ACTION == 'battery':
     level = int(percent.group(1)) if percent else 0
     charging = 'AC Power' in output
     icon = '' if charging else ['', '', '', '', ''][min(level // 25, 4)]
-    color = '0xffeed49f' if charging else '0xffed8796' if level < 20 else '0xff91d7e3'
+    color = '0xffe5c568' if charging else '0xffee7189' if level < 20 else '0xff47d3d6'
     bar('--set', 'battery', 'label=' + label, 'icon=' + icon, 'icon.color=' + color)
 elif ACTION == 'wifi':
     ports = subprocess.check_output(['/usr/sbin/networksetup', '-listallhardwareports'], text=True, timeout=5)
@@ -92,7 +92,7 @@ elif ACTION == 'wifi':
         connected = subprocess.run(['/usr/sbin/ipconfig', 'getifaddr', device], capture_output=True, timeout=5).returncode == 0
     # Icon only: sky when connected, dim when idle, struck through when off.
     bar('--set', 'wifi', 'icon=' + ('\U000f05a9' if powered else '\U000f05aa'),
-        'icon.color=' + ('0xff91d7e3' if connected else '0xff8087a2'))
+        'icon.color=' + ('0xff47d3d6' if connected else '0xff526270'))
 elif ACTION == 'bluetooth':
     report = json.loads(subprocess.check_output(
         ['/usr/sbin/system_profiler', 'SPBluetoothDataType', '-json'], text=True, timeout=15,
@@ -104,7 +104,7 @@ elif ACTION == 'bluetooth':
         'label.drawing=' + ('on' if connected else 'off'),
         'icon.padding_right=' + ('3' if connected else '10'),
         'icon=' + ('\U000f00b2' if state == 'attrib_off' else '\U000f00af'),
-        'icon.color=' + ('0xff91d7e3' if state == 'attrib_on' else '0xff8087a2'))
+        'icon.color=' + ('0xff47d3d6' if state == 'attrib_on' else '0xff526270'))
 elif ACTION == 'update':
     update()
 elif ACTION == 'watch':

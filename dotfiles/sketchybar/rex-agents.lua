@@ -3,7 +3,7 @@
 -- Run with: rex do --all rex-agents.lua sketchybar=/path/to/sketchybar
 local sketchybar = assert(rex.args.sketchybar, "pass sketchybar=PATH")
 
-local RED, GREEN, SKY = "0xffed8796", "0xffa6da95", "0xff91d7e3"
+local RED, GREEN, SKY = "0xffee7189", "0xff55dfa2", "0xff47d3d6"
 -- Most urgent first; a terminal counts once, under its most urgent record.
 local RANK = { blocked = 1, error = 2, done = 3, working = 4 }
 local LABEL = { blocked = "waiting", error = "failed", done = "done", working = "working" }

@@ -40,8 +40,9 @@ setup; OmniWM must use F18 rather than its special Caps Lock trigger.
 SketchyBar replaces OmniWM's built-in workspace bar. It shows clickable workspaces
 1–9 on the left, with the focused workspace highlighted and empty workspaces dimmed.
 The bar follows [wthrajat/dotfiles-mac](https://github.com/wthrajat/dotfiles-mac):
-a transparent canvas with separate frosted Catppuccin Macchiato pills, a warm
-yellow active-workspace chip and sky-blue status icons. The Apple logo and
+a transparent canvas with separate frosted pills in Herdr's polar-aurora colours,
+a mint active-workspace chip and teal status icons. The matching "polar night"
+wallpaper (`dotfiles/wallpaper/`) is set by Home Manager activation. The Apple logo and
 workspace numbers share one pill. The right side shows memory (percent and GB in
 use), CPU load, Wi-Fi and Bluetooth (sharing one pill), date, clock and battery.
 Labels use SF Mono, which Home Manager copies from Terminal.app into
