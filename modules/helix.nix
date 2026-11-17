@@ -4,6 +4,11 @@
     enable = true;
     defaultEditor = true;
     settings = builtins.fromTOML (builtins.readFile ../dotfiles/helix/config.toml);
+    # The Rex terminal themes; Helix can't follow light and dark mode, so pick with :theme.
+    themes = {
+      polar-aurora = builtins.fromTOML (builtins.readFile ../dotfiles/helix/themes/polar-aurora.toml);
+      merino-light = builtins.fromTOML (builtins.readFile ../dotfiles/helix/themes/merino-light.toml);
+    };
     languages = {
       language-server.rust-analyzer.command = "${pkgs.rust-analyzer}/bin/rust-analyzer";
       language-server.pyrefly = { command = "${pkgs.pyrefly}/bin/pyrefly"; args = [ "lsp" ]; };

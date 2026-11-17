@@ -1,0 +1,111 @@
+# Merino Light, from the Rex terminal theme of the same name.
+
+"ui.background" = { bg = "bg" }
+"ui.text" = "fg"
+"ui.text.focus" = { fg = "fg", bg = "surface" }
+"ui.text.inactive" = "gray"
+"ui.cursor" = { fg = "bg", bg = "cursor" }
+"ui.cursor.primary" = { fg = "bg", bg = "cursor" }
+"ui.cursor.match" = { fg = "cursor", modifiers = ["underlined", "bold"] }
+"ui.cursorline.primary" = { bg = "surface" }
+"ui.selection" = { bg = "selection" }
+"ui.selection.primary" = { bg = "selection_primary" }
+"ui.linenr" = "gray"
+"ui.linenr.selected" = { fg = "fg", modifiers = ["bold"] }
+"ui.statusline" = { fg = "fg", bg = "surface" }
+"ui.statusline.inactive" = { fg = "gray", bg = "surface" }
+"ui.statusline.normal" = { fg = "bg", bg = "blue", modifiers = ["bold"] }
+"ui.statusline.insert" = { fg = "bg", bg = "green", modifiers = ["bold"] }
+"ui.statusline.select" = { fg = "bg", bg = "magenta", modifiers = ["bold"] }
+"ui.bufferline" = { fg = "gray", bg = "surface" }
+"ui.bufferline.active" = { fg = "fg", bg = "bg", modifiers = ["bold"] }
+"ui.bufferline.background" = { bg = "surface" }
+"ui.popup" = { fg = "fg", bg = "surface" }
+"ui.window" = "border"
+"ui.help" = { fg = "fg", bg = "surface" }
+"ui.menu" = { fg = "fg", bg = "surface" }
+"ui.menu.selected" = { bg = "selection_primary" }
+"ui.menu.scroll" = { fg = "gray", bg = "surface" }
+"ui.picker.header" = { modifiers = ["bold"] }
+"ui.virtual.whitespace" = "border"
+"ui.virtual.indent-guide" = "border"
+"ui.virtual.ruler" = { bg = "surface" }
+"ui.virtual.inlay-hint" = "gray"
+"ui.virtual.jump-label" = { fg = "red", modifiers = ["bold"] }
+"ui.highlight" = { bg = "selection" }
+
+"comment" = { fg = "gray", modifiers = ["italic"] }
+"keyword" = "magenta"
+"keyword.control" = "magenta"
+"keyword.storage" = "magenta"
+"operator" = "cyan"
+"punctuation" = "dim"
+"punctuation.special" = "cyan"
+"function" = "blue"
+"function.macro" = "cyan"
+"function.builtin" = "bright_blue"
+"constructor" = "yellow"
+"type" = "yellow"
+"type.builtin" = "yellow"
+"variable" = "fg"
+"variable.builtin" = "red"
+"variable.parameter" = "bright_red"
+"variable.other.member" = "bright_cyan"
+"constant" = "bright_yellow"
+"constant.builtin" = "bright_yellow"
+"constant.numeric" = "bright_yellow"
+"constant.character.escape" = "cyan"
+"string" = "green"
+"string.regexp" = "cyan"
+"string.special" = "cyan"
+"label" = "cyan"
+"namespace" = "yellow"
+"attribute" = "yellow"
+"tag" = "red"
+"special" = "cyan"
+
+"markup.heading" = { fg = "blue", modifiers = ["bold"] }
+"markup.bold" = { modifiers = ["bold"] }
+"markup.italic" = { modifiers = ["italic"] }
+"markup.strikethrough" = { modifiers = ["crossed_out"] }
+"markup.link.url" = { fg = "cyan", modifiers = ["underlined"] }
+"markup.link.text" = "blue"
+"markup.raw" = "green"
+"markup.quote" = "gray"
+"markup.list" = "magenta"
+
+"diff.plus" = "green"
+"diff.minus" = "red"
+"diff.delta" = "yellow"
+
+"error" = "red"
+"warning" = "yellow"
+"info" = "blue"
+"hint" = "cyan"
+"diagnostic.error" = { underline = { color = "red", style = "curl" } }
+"diagnostic.warning" = { underline = { color = "yellow", style = "curl" } }
+"diagnostic.info" = { underline = { color = "blue", style = "curl" } }
+"diagnostic.hint" = { underline = { color = "cyan", style = "curl" } }
+"diagnostic.unnecessary" = { modifiers = ["dim"] }
+"diagnostic.deprecated" = { modifiers = ["crossed_out"] }
+
+[palette]
+bg = "#ffffff"
+fg = "#1f2328"
+surface = "#f3f5f8"
+border = "#d8dee4"
+selection = "#dbe9ff"
+selection_primary = "#b6d8ff"
+cursor = "#0969da"
+gray = "#6e7781"
+dim = "#57606a"
+red = "#cf222e"
+green = "#116329"
+yellow = "#9d5c00"
+blue = "#0969da"
+magenta = "#8250df"
+cyan = "#1b7c83"
+bright_red = "#a40e26"
+bright_yellow = "#c47a00"
+bright_blue = "#218bff"
+bright_cyan = "#3192aa"
