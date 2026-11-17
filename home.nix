@@ -8,7 +8,6 @@ in
     ./modules/helix.nix
     ./modules/git.nix
     ./modules/zellij.nix
-    ./modules/herdr.nix
     ./modules/pi.nix
     ./modules/terminal.nix
     ./modules/access.nix
@@ -21,8 +20,6 @@ in
     # Global runtimes so project tests can run; uv also provides Python.
     # rustup rather than nixpkgs rustc so projects can pin toolchains via rust-toolchain.toml.
     nodejs uv rustup
-    # herdr is not packaged on 26.05.
-    unstable.herdr
     # 26.05 ships pi 0.75; unstable tracks the current 1.x releases.
     unstable.pi-coding-agent
   ];

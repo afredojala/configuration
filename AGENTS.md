@@ -9,13 +9,13 @@ documentation. Read it before changing behaviour it describes.
 
 | Path | Purpose |
 | --- | --- |
-| `flake.nix` | Inputs (nixpkgs 26.05, unstable for OmniWM, herdr and pi, Home Manager, nix-darwin, nix-homebrew) and the three outputs |
+| `flake.nix` | Inputs (nixpkgs 26.05, unstable for OmniWM and pi, Home Manager, nix-darwin, nix-homebrew) and the three outputs |
 | `home.nix` | Shared Home Manager entry point: module imports and `home.packages` |
 | `modules/*.nix` | Shared Home Manager modules, one per area (shell, git, helix, terminal, cloud …) |
 | `hosts/macbook.nix` | Mac-only Home Manager settings; imports `omniwm`, `sketchybar`, `raycast` |
 | `hosts/linux.nix` | Linux-only Home Manager settings |
 | `hosts/macbook-system.nix` | nix-darwin system layer: Homebrew casks, Mac App Store apps, keyboard mapping |
-| `dotfiles/` | Raw config files read by modules (Helix, K9s, Zellij, herdr, pi, SSH, OmniWM, SketchyBar) |
+| `dotfiles/` | Raw config files read by modules (Helix, K9s, Zellij, pi, SSH, OmniWM, SketchyBar) |
 
 Flake outputs:
 
@@ -66,7 +66,7 @@ and look under `<out>/home-files` and `<out>/home-path/bin`.
 - Flakes only see tracked files. Run `git add` on new modules and dotfiles before building.
 - Keep `home.stateVersion` and `system.stateVersion` unchanged.
 - Keep packages on stable nixpkgs. Use `nixpkgs-unstable` only when stable lacks
-  the package or is a major version behind (currently OmniWM, herdr and pi), and
+  the package or is a major version behind (currently OmniWM and pi), and
   explain why in a comment.
 - Comments are short and explain *why*, not what.
 - Update `README.md` when a change adds or alters something it lists, such as

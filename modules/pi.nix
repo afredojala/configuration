@@ -1,7 +1,7 @@
 { ... }:
 let
-  # recursive links each file, so pi and `herdr integration install pi` can still
-  # add their own files. settings.json and auth.json stay unmanaged: pi writes them.
+  # recursive links each file, so pi and agent integrations can still add their
+  # own files. settings.json and auth.json stay unmanaged: pi writes them.
   link = dir: { source = ../dotfiles/pi/${dir}; recursive = true; };
 in
 {
