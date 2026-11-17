@@ -15,4 +15,9 @@
   # Each pytest-xdist worker starts its own testcontainers; the 12-worker default
   # saturates CPU and RAM on this machine.
   home.sessionVariables.TEST_WORKERS = "4";
+
+  # The check runs `tccutil reset SystemPolicyAppBundles` when it fails, which wipes
+  # every app's App Management grant. Copying Ghostty and OmniWM only needs the grant
+  # when one of them changes.
+  targets.darwin.copyApps.enableChecks = false;
 }
