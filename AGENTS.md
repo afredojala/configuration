@@ -44,9 +44,17 @@ just mac-system-build       # build Mac system layer (no activation)
 nix flake check --no-build  # evaluate all outputs, including Linux, from the Mac
 ```
 
-Activation changes the live machine. `just update <target>` switches Home Manager.
-`just mac-system-update` uses sudo. Leave both to the user unless they ask you
-to run them, and tell them which one a change needs.
+Activation changes the live machine. After a green `just build macbook`, run
+`just update macbook` (Home Manager, no sudo) yourself and check the result, so the
+user doesn't have to paste activation logs back. `just mac-system-update` uses sudo
+and has no password prompt from an agent: leave it to the user, in their own
+terminal, and say when a change needs it.
+
+Homebrew runs with `cleanup = "uninstall"`, so a cask or Mac App Store app missing
+from the config gets removed on activation. If `mas`, `brew` or another check fails
+or returns nothing, treat the answer as unknown, not empty. Before a change that
+touches Homebrew or `mas` lists, say exactly what activation would remove. For an
+app's own settings, confirm the app actually reads the key before calling it done.
 
 `just build` uses `--no-link`, so a `result-mac` link may be stale. To inspect
 generated files, use
