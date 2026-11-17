@@ -26,6 +26,8 @@ in
 
   # Binaries from `cargo install`.
   home.sessionPath = [ "$HOME/.cargo/bin" "$HOME/.local/bin" ];
+  # nodejs's default global prefix is the read-only store; `npm i -g` lands in ~/.local/bin.
+  home.sessionVariables.NPM_CONFIG_PREFIX = "$HOME/.local";
 
   programs.home-manager.enable = true;
 }
