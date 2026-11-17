@@ -39,6 +39,7 @@
       "steam"
       "qobuz"
       "obsidian"
+      "todoist-app"
       # Standalone app rather than the Mac App Store build, so the tailscale CLI works too.
       "tailscale-app"
     ];
