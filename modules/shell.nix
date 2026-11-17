@@ -27,6 +27,7 @@
       # Claude Code in a fresh git worktree, so agent work stays off the main checkout.
       cw = "claude -w";
     };
+    initContent = builtins.readFile ../dotfiles/zsh/wt.zsh;
   };
   programs.starship = {
     enable = true;
