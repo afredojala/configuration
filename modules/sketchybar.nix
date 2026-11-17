@@ -24,6 +24,15 @@ let
     ${pkgs.sketchybar}/bin/sketchybar --set rex drawing=off
     exit $status
   '';
+  # hc follows herdr-core's updates through its ~/.local/bin link.
+  herdrAgents = pkgs.writeShellScript "herdr-agents-sketchybar" ''
+    ${python}/bin/python3 ${../dotfiles/sketchybar/herdr-agents.py} \
+      "$HOME/.local/bin/hc" ${pkgs.sketchybar}/bin/sketchybar
+    status=$?
+    # A stale count is worse than none.
+    ${pkgs.sketchybar}/bin/sketchybar --set herdr drawing=off
+    exit $status
+  '';
 in {
   home.packages = [ pkgs.sketchybar pkgs.nerd-fonts.symbols-only ];
   # SF Mono ships inside Terminal.app but is not registered system-wide.
@@ -122,6 +131,9 @@ in {
       # Like the meeting pill, it sits beside the workspaces, clear of the notch.
       sketchybar --add item rex left --set rex icon="󰚩" drawing=off padding_left=10 \
         click_script="/usr/bin/open -a 'Rex Beta'"
+      # The Herdr agent does the same for agents running under herdr-core.
+      sketchybar --add item herdr left --set herdr icon="󰚩" drawing=off padding_left=10 \
+        click_script="/usr/bin/open -a Herdr"
       # The meeting agent fills this in and hides it when nothing is coming up.
       # It sits on the left because the notch hides the middle of the bar.
       sketchybar --add item meeting left --set meeting icon="󰕧" drawing=off padding_left=10 \
@@ -167,6 +179,17 @@ in {
       # Rex may not be running; retry slowly rather than every 10 seconds.
       ThrottleInterval = 30;
       StandardErrorPath = "/tmp/rex-agents-sketchybar.log";
+    };
+  };
+  launchd.agents.herdr-agents-sketchybar = {
+    enable = true;
+    config = {
+      ProgramArguments = [ "${herdrAgents}" ];
+      RunAtLoad = true;
+      KeepAlive = true;
+      # herdr-core may not be running; retry slowly rather than every 10 seconds.
+      ThrottleInterval = 30;
+      StandardErrorPath = "/tmp/herdr-agents-sketchybar.log";
     };
   };
   targets.darwin.defaults.NSGlobalDomain._HIHideMenuBar = true;
