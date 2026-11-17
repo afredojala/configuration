@@ -36,6 +36,24 @@ Flake outputs:
 - **Larger config files:** put them in `dotfiles/<tool>/` and read them from the module
   (e.g. `builtins.fromTOML (builtins.readFile ../dotfiles/helix/config.toml)`).
 
+## Herdr (outside this repo)
+
+Herdr's config is plain files on the Mac and is not managed by Nix. Edit the files
+in place; there is nothing to build or activate.
+
+| Path | Purpose |
+| --- | --- |
+| `~/.config/herdr-app/keys.json` | Key bindings, e.g. `"cmd-g": "mod.open:popup-lazygit"` |
+| `~/.config/herdr-app/mods/popup-{lazygit,yazi,k9s,meta}/` | Our toggle popups (`⌘G`, `⌘E`, `⌘K`, `⌘⇧M`), shown with `terminal.peek` |
+| `~/.config/herdr-app/settings.json` | Look and app settings (e.g. `worktrees.directory`) |
+| `~/.config/herdr-core/templates/*.md` | `hc run` agent templates (`meta`, `browser-claude`, `browser-codex`) |
+
+- Read `~/.config/herdr-app/AGENTS.md`, `herdr-app --skill` and `hc --skill` before changing them.
+- Herdr's shipped layouts and mods (listed in `~/.config/herdr-app/installed.json`) are
+  replaced on every start. Clone them (`layout.clone`, `mod.clone`) instead of editing.
+- Check a mod change with `herdr-app status` (its `errors`) and `herdr-app shot <file>.png`.
+- Only `wt` (`dotfiles/zsh/wt.zsh`), which opens a worktree as a Herdr space, lives in this repo.
+
 ## Commands
 
 ```sh
