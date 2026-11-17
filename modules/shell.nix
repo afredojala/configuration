@@ -40,6 +40,10 @@
     enable = true;
     enableZshIntegration = true;
     nix-direnv.enable = true;
-    config.global.hide_env_diff = true;
+    config.global = {
+      hide_env_diff = true;
+      # Projects that only ship a .env get loaded too; .envrc wins if both exist.
+      load_dotenv = true;
+    };
   };
 }
