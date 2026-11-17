@@ -46,7 +46,8 @@ in place; there is nothing to build or activate.
 | `~/.config/herdr-app/keys.json` | Key bindings, e.g. `"cmd-g": "mod.open:popup-lazygit"` |
 | `~/.config/herdr-app/mods/popup-{lazygit,yazi,k9s,meta}/` | Our toggle popups (`⌘G`, `⌘E`, `⌘K`, `⌘⇧M`), shown with `terminal.peek` |
 | `~/.config/herdr-app/settings.json` | Look and app settings (e.g. `worktrees.directory`) |
-| `~/.config/herdr-core/templates/*.md` | `hc run` agent templates (`meta`, `browser-claude`, `browser-codex`) |
+| `~/.config/herdr-core/templates/*.md` | `hc run` agent templates: `meta`, and `browser`, `adversarial-reviewer`, `ui-judge`, `persona-reviewer` each as `-claude` and `-codex` |
+| `~/.config/herdr-core/config.toml` | Core settings (`restore_screen = true`) |
 
 - Read `~/.config/herdr-app/AGENTS.md`, `herdr-app --skill` and `hc --skill` before changing them.
 - Herdr's shipped layouts and mods (listed in `~/.config/herdr-app/installed.json`) are
