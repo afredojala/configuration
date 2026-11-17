@@ -17,7 +17,16 @@ wt() {
   main=${common:h}
   dir=$HOME/.herdr/worktrees/${main:t}/${branch//\//-}
 
-  if [[ ! -d $dir ]]; then
+  if [[ -d $dir ]]; then
+    # `a/b` and `a-b` share a folder: only reuse it if it holds this repo and branch.
+    local have_common have_branch
+    have_common=$(git -C "$dir" rev-parse --path-format=absolute --git-common-dir 2>/dev/null)
+    have_branch=$(git -C "$dir" symbolic-ref --quiet --short HEAD 2>/dev/null)
+    if [[ $have_common != "$common" || $have_branch != "$branch" ]]; then
+      echo "wt: $dir holds ${have_branch:-something else}, not $branch" >&2
+      return 1
+    fi
+  else
     if git show-ref --verify --quiet "refs/heads/$branch"; then
       git worktree add "$dir" "$branch" || return 1
     else
