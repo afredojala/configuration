@@ -64,12 +64,19 @@ updates it every 30 seconds and when the calendar changes. Approve its Calendar
 access prompt after the first activation. Until you do, the pill links to the
 privacy settings. A rebuilt agent may ask for access again.
 
+A robot pill right of the workspaces, before the meeting pill, counts the programs in [Rex](https://www.superlogical.com/rex)
+that report a status, such as Claude Code, across every session: `1 waiting · 2 working`.
+The icon turns red when one is waiting on you or failed, and green when one has
+finished. The pill hides when nothing reports a status, and clicking it opens Rex.
+A launchd agent runs `dotfiles/sketchybar/rex-agents.lua` with `rex do --all`; it
+updates on status events and every 15 seconds, and doesn't start Rex itself.
+
 macOS's menu bar is set to auto-hide; moving to the top edge can still reveal it.
 Both the legacy global preference and macOS 26's Control Center preference are
 managed. SketchyBar uses the window level to remain visible over app windows.
 Configuration lives in `modules/sketchybar.nix` and `dotfiles/sketchybar/bridge.py`.
-Errors go to `/tmp/sketchybar.log`, `/tmp/omniwm-sketchybar.log` and
-`/tmp/sketchybar-meeting.log`.
+Errors go to `/tmp/sketchybar.log`, `/tmp/omniwm-sketchybar.log`,
+`/tmp/sketchybar-meeting.log` and `/tmp/rex-agents-sketchybar.log`.
 To restore the native bar, remove the SketchyBar module import, enable
 `settings.workspaceBar.enabled` in OmniWM preferences, and set
 `_HIHideMenuBar = false` before applying Home Manager.
