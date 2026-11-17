@@ -33,7 +33,7 @@ def patch_values(section, values):
 
 def apply(original, preferences):
     config = tomllib.loads(original)
-    if config.get("schemaVersion") != 4:
+    if config.get("schemaVersion") not in {4, 5}:
         raise ValueError("Unsupported OmniWM schema; settings left untouched")
     updated = original
 
