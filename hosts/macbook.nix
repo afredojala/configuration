@@ -11,4 +11,8 @@
   programs.zsh.envExtra = ''
     export PATH="$PATH:$HOME/.orbstack/bin"
   '';
+
+  # Each pytest-xdist worker starts its own testcontainers; the 12-worker default
+  # saturates CPU and RAM on this machine.
+  home.sessionVariables.TEST_WORKERS = "4";
 }
