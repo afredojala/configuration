@@ -49,6 +49,7 @@ in place; there is nothing to build or activate.
 | `~/.config/herdr-app/mods/t3-repos{,-chrome}/` | Clones of herdr-t3's `t3-agents` and `t3-chrome` that `repos` uses; the other `t3-*` mods are [herdr-t3](https://github.com/JinJieBeWater/herdr-t3) as installed |
 | `~/.config/herdr-app/settings.json` | Look and app settings (e.g. `worktrees.directory`) |
 | `~/.config/herdr-core/templates/*.md` | `hc run` agent templates: `meta`, and `browser`, `adversarial-reviewer`, `ui-judge`, `persona-reviewer` each as `-claude` and `-codex` |
+| `~/.overview/` | The `meta` agent's folder: `CLAUDE.md` (instructions), `.claude/settings.local.json` (pre-approved commands), `.mcp.json` + `forge-headers.sh` (Forge, token from `.env`, which Claude Code doesn't load itself) |
 | `~/.config/herdr-core/config.toml` | Core settings (`restore_screen = true`) |
 
 - Read `~/.config/herdr-app/AGENTS.md`, `herdr-app --skill` and `hc --skill` before changing them.
