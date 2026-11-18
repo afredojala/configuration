@@ -13,26 +13,6 @@ let
       -sectcreate __TEXT __info_plist ${../dotfiles/sketchybar/meeting.plist} \
       ${../dotfiles/sketchybar/meeting.m} -o $out/bin/sketchybar-meeting
   '';
-  # Rex updates itself into Versions/; Current always holds the installed CLI.
-  rexAgents = pkgs.writeShellScript "rex-agents-sketchybar" ''
-    rex="$HOME/Library/Application Support/com.superlogical.rex/RexServer/Versions/Current/Rex Server.app/Contents/MacOS/rex"
-    # Don't start Rex just to watch it; launchd retries until it runs.
-    "$rex" --autostart=false do --all ${../dotfiles/sketchybar/rex-agents.lua} \
-      sketchybar=${pkgs.sketchybar}/bin/sketchybar
-    status=$?
-    # A stale count is worse than none.
-    ${pkgs.sketchybar}/bin/sketchybar --set rex drawing=off
-    exit $status
-  '';
-  # hc follows herdr-core's updates through its ~/.local/bin link.
-  herdrAgents = pkgs.writeShellScript "herdr-agents-sketchybar" ''
-    ${python}/bin/python3 ${../dotfiles/sketchybar/herdr-agents.py} \
-      "$HOME/.local/bin/hc" ${pkgs.sketchybar}/bin/sketchybar
-    status=$?
-    # A stale count is worse than none.
-    ${pkgs.sketchybar}/bin/sketchybar --set herdr drawing=off
-    exit $status
-  '';
 in {
   home.packages = [ pkgs.sketchybar pkgs.nerd-fonts.symbols-only ];
   # SF Mono ships inside Terminal.app but is not registered system-wide.
@@ -128,13 +108,6 @@ in {
         script="${bridge} cpu" click_script="/usr/bin/open -a 'Activity Monitor'" \
         --add item memory right --set memory icon="󰘚" update_freq=30 \
         script="${bridge} memory" click_script="/usr/bin/open -a 'Activity Monitor'"
-      # The Rex agent fills this in and hides it when no program reports a status.
-      # Like the meeting pill, it sits beside the workspaces, clear of the notch.
-      sketchybar --add item rex left --set rex icon="󰚩" drawing=off padding_left=10 \
-        click_script="/usr/bin/open -a 'Rex Beta'"
-      # The Herdr agent does the same for agents running under herdr-core.
-      sketchybar --add item herdr left --set herdr icon="󰚩" drawing=off padding_left=10 \
-        click_script="/usr/bin/open -a Herdr"
       # The meeting agent fills this in and hides it when nothing is coming up.
       # It sits on the left because the notch hides the middle of the bar.
       sketchybar --add item meeting left --set meeting icon="󰕧" drawing=off padding_left=10 \
@@ -169,28 +142,6 @@ in {
       KeepAlive = true;
       ThrottleInterval = 10;
       StandardErrorPath = "/tmp/sketchybar-meeting.log";
-    };
-  };
-  launchd.agents.rex-agents-sketchybar = {
-    enable = true;
-    config = {
-      ProgramArguments = [ "${rexAgents}" ];
-      RunAtLoad = true;
-      KeepAlive = true;
-      # Rex may not be running; retry slowly rather than every 10 seconds.
-      ThrottleInterval = 30;
-      StandardErrorPath = "/tmp/rex-agents-sketchybar.log";
-    };
-  };
-  launchd.agents.herdr-agents-sketchybar = {
-    enable = true;
-    config = {
-      ProgramArguments = [ "${herdrAgents}" ];
-      RunAtLoad = true;
-      KeepAlive = true;
-      # herdr-core may not be running; retry slowly rather than every 10 seconds.
-      ThrottleInterval = 30;
-      StandardErrorPath = "/tmp/herdr-agents-sketchybar.log";
     };
   };
   targets.darwin.defaults.NSGlobalDomain._HIHideMenuBar = true;
